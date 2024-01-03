@@ -9,6 +9,26 @@ import { UserList } from "./user/UserList";
 import { UserCreate } from "./user/UserCreate";
 import { UserEdit } from "./user/UserEdit";
 import { UserShow } from "./user/UserShow";
+import { OrganizationList } from "./organization/OrganizationList";
+import { OrganizationCreate } from "./organization/OrganizationCreate";
+import { OrganizationEdit } from "./organization/OrganizationEdit";
+import { OrganizationShow } from "./organization/OrganizationShow";
+import { WebsiteList } from "./website/WebsiteList";
+import { WebsiteCreate } from "./website/WebsiteCreate";
+import { WebsiteEdit } from "./website/WebsiteEdit";
+import { WebsiteShow } from "./website/WebsiteShow";
+import { PageList } from "./page/PageList";
+import { PageCreate } from "./page/PageCreate";
+import { PageEdit } from "./page/PageEdit";
+import { PageShow } from "./page/PageShow";
+import { PageSectionList } from "./pageSection/PageSectionList";
+import { PageSectionCreate } from "./pageSection/PageSectionCreate";
+import { PageSectionEdit } from "./pageSection/PageSectionEdit";
+import { PageSectionShow } from "./pageSection/PageSectionShow";
+import { SectionTemplateList } from "./sectionTemplate/SectionTemplateList";
+import { SectionTemplateCreate } from "./sectionTemplate/SectionTemplateCreate";
+import { SectionTemplateEdit } from "./sectionTemplate/SectionTemplateEdit";
+import { SectionTemplateShow } from "./sectionTemplate/SectionTemplateShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -41,6 +61,41 @@ const App = (): React.ReactElement => {
           edit={UserEdit}
           create={UserCreate}
           show={UserShow}
+        />
+        <Resource
+          name="Organization"
+          list={OrganizationList}
+          edit={OrganizationEdit}
+          create={OrganizationCreate}
+          show={OrganizationShow}
+        />
+        <Resource
+          name="Website"
+          list={WebsiteList}
+          edit={WebsiteEdit}
+          create={WebsiteCreate}
+          show={WebsiteShow}
+        />
+        <Resource
+          name="Page"
+          list={PageList}
+          edit={PageEdit}
+          create={PageCreate}
+          show={PageShow}
+        />
+        <Resource
+          name="PageSection"
+          list={PageSectionList}
+          edit={PageSectionEdit}
+          create={PageSectionCreate}
+          show={PageSectionShow}
+        />
+        <Resource
+          name="SectionTemplate"
+          list={SectionTemplateList}
+          edit={SectionTemplateEdit}
+          create={SectionTemplateCreate}
+          show={SectionTemplateShow}
         />
       </Admin>
     </div>

@@ -47,12 +47,28 @@ export class UserControllerBase {
   })
   async createUser(@common.Body() data: UserCreateInput): Promise<User> {
     return await this.service.createUser({
-      data: data,
+      data: {
+        ...data,
+
+        organization: data.organization
+          ? {
+              connect: data.organization,
+            }
+          : undefined,
+      },
       select: {
         createdAt: true,
+        email: true,
         firstName: true,
         id: true,
         lastName: true,
+
+        organization: {
+          select: {
+            id: true,
+          },
+        },
+
         roles: true,
         updatedAt: true,
         username: true,
@@ -78,9 +94,17 @@ export class UserControllerBase {
       ...args,
       select: {
         createdAt: true,
+        email: true,
         firstName: true,
         id: true,
         lastName: true,
+
+        organization: {
+          select: {
+            id: true,
+          },
+        },
+
         roles: true,
         updatedAt: true,
         username: true,
@@ -107,9 +131,17 @@ export class UserControllerBase {
       where: params,
       select: {
         createdAt: true,
+        email: true,
         firstName: true,
         id: true,
         lastName: true,
+
+        organization: {
+          select: {
+            id: true,
+          },
+        },
+
         roles: true,
         updatedAt: true,
         username: true,
@@ -142,12 +174,28 @@ export class UserControllerBase {
     try {
       return await this.service.updateUser({
         where: params,
-        data: data,
+        data: {
+          ...data,
+
+          organization: data.organization
+            ? {
+                connect: data.organization,
+              }
+            : undefined,
+        },
         select: {
           createdAt: true,
+          email: true,
           firstName: true,
           id: true,
           lastName: true,
+
+          organization: {
+            select: {
+              id: true,
+            },
+          },
+
           roles: true,
           updatedAt: true,
           username: true,
@@ -182,9 +230,17 @@ export class UserControllerBase {
         where: params,
         select: {
           createdAt: true,
+          email: true,
           firstName: true,
           id: true,
           lastName: true,
+
+          organization: {
+            select: {
+              id: true,
+            },
+          },
+
           roles: true,
           updatedAt: true,
           username: true,

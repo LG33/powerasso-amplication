@@ -8,12 +8,59 @@ generator client {
 }
 
 model User {
-  createdAt DateTime @default(now())
-  firstName String?
-  id        String   @id @default(cuid())
-  lastName  String?
-  password  String
-  roles     Json
-  updatedAt DateTime @updatedAt
-  username  String   @unique
+  createdAt      DateTime      @default(now())
+  email          String?
+  firstName      String?
+  id             String        @id @default(cuid())
+  lastName       String?
+  organization   Organization? @relation(fields: [organizationId], references: [id])
+  organizationId String?
+  password       String
+  roles          Json
+  updatedAt      DateTime      @updatedAt
+  username       String        @unique
+}
+
+model Organization {
+  createdAt DateTime  @default(now())
+  id        String    @id @default(cuid())
+  name      String?
+  updatedAt DateTime  @updatedAt
+  users     User[]
+  websites  Website[]
+}
+
+model Website {
+  createdAt      DateTime      @default(now())
+  id             String        @id @default(cuid())
+  organization   Organization? @relation(fields: [organizationId], references: [id])
+  organizationId String?
+  pages          Page[]
+  updatedAt      DateTime      @updatedAt
+}
+
+model Page {
+  createdAt DateTime      @default(now())
+  id        String        @id @default(cuid())
+  sections  PageSection[]
+  updatedAt DateTime      @updatedAt
+  website   Website?      @relation(fields: [websiteId], references: [id])
+  websiteId String?
+}
+
+model PageSection {
+  createdAt  DateTime         @default(now())
+  id         String           @id @default(cuid())
+  page       Page?            @relation(fields: [pageId], references: [id])
+  pageId     String?
+  Template   SectionTemplate? @relation(fields: [TemplateId], references: [id])
+  TemplateId String?
+  updatedAt  DateTime         @updatedAt
+}
+
+model SectionTemplate {
+  createdAt DateTime      @default(now())
+  id        String        @id @default(cuid())
+  sections  PageSection[]
+  updatedAt DateTime      @updatedAt
 }
